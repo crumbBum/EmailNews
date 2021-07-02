@@ -5,8 +5,8 @@ import pandas as pd
 from news import NewsFeed
 
 
-user = ''
-password = ''
+user = ''  # Enter Gmail account here.  For example, sushi@gmail.com
+password = ''  # Enter password for the user above, here.
 
 
 def send_email():
@@ -22,8 +22,8 @@ def send_email():
                contents=f"Hey {row['name'].title()},\n See whats new in {row['interest']}. \n \n {news_feed.get()}")
 
 
-while True:
-    if datetime.datetime.now().hour == 24 and datetime.datetime.now().minute == 59:
+while True:  # Send  every 24 hours.
+    if datetime.datetime.now().hour == 23 and datetime.datetime.now().minute == 59:
         df = pd.read_excel('people.xlsx')
 
         for index, row in df.iterrows():

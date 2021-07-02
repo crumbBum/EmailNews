@@ -3,11 +3,13 @@ import requests
 
 class NewsFeed:
     """
-    A class used to request news of a certain type in a range of dates.
+    A class used to request news of a certain type in a range of dates, it then builds an e-mail body consisting of the
+    requested information
+
     """
 
-    base_url = ""
-    api_key = ""
+    base_url = "https://newsapi.org/v2/everything?"
+    api_key = ""  # Sign up and add your API key here
 
     def __init__(self, interest, from_date, to_date, language='en'):
         self.interest = interest
@@ -22,7 +24,7 @@ class NewsFeed:
 
         email_body = ''
 
-        for article in articles:
+        for article in articles:  # Add text here if you want to modify the email body
             email_body = email_body + article['title'] + "\n" + article['url'] + "\n\n"
 
         return email_body
@@ -43,5 +45,5 @@ class NewsFeed:
 
 
 if __name__ == '__main__':
-    news_feed = NewsFeed(interest='candy', from_date='2021-06-26', to_date='2021-06-27', language='en')
+    news_feed = NewsFeed(interest='candy', from_date='2021-06-26', to_date='2021-06-27', language='en')  # I <3 Candy
     print(news_feed.get())
